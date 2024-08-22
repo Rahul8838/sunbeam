@@ -1,0 +1,89 @@
+    2  sudo apt update
+    3  sudo apt-get  install bison flex gcc libdumbnet-dev libluajit-5.1-dev libnghttp2-dev libpcap-dev libpcre3-dev libssl-dev make openssl wget zlib1g-dev ca-certificates -y
+    4  sudo mkdir /usr/src/snort_src
+    5  cd /usr/src/snort_src/
+    6  sudo wget https://www.snort.org/downloads/snort/daq-2.0.7.tar.gz
+    7  sudo tar -zxf daq-2.0.7.tar.gz
+    8  cd daq-2.0.7/
+    9  sudo ./configure
+   10  sudo make
+   11  sudo make install
+   12  cd ../
+   13  sudo ln -s /usr/include/tirpc/rpc/rpc.h /usr/include/rpc
+   14  sudo ln -s /usr/include/tirpc/rpc/types.h /usr/include/rpc
+   15  sudo ln -s /usr/include/tirpc/netconfig.h /usr/include/
+   16  sudo ln -s /usr/include/tirpc/rpc/xdr.h /usr/include/rpc
+   17  sudo ln -s /usr/include/tirpc/rpc/auth.h /usr/include/rpc
+   18  sudo ln -s /usr/include/tirpc/rpc/clnt_stat.h /usr/include/rpc
+   19  sudo ln -s /usr/include/tirpc/rpc/clnt.h /usr/include/rpc
+   20  sudo ln -s /usr/include/tirpc/rpc/clnt_soc.h /usr/include/rpc
+   21  sudo ln -s /usr/include/tirpc/rpc/rpc_msg.h /usr/include/rpc
+   22  sudo ln -s /usr/include/tirpc/rpc/auth_unix.h /usr/include/rpc
+   23  sudo ln -s /usr/include/tirpc/rpc/auth_des.h /usr/include/rpc
+   24  sudo ln -s /usr/include/tirpc/rpc/svc_auth.h /usr/include/rpc
+   25  sudo ln -s /usr/include/tirpc/rpc/svc.h /usr/include/rpc
+   26  sudo ln -s /usr/include/tirpc/rpc/svc_soc.h /usr/include/rpc
+   27  sudo ln -s /usr/include/tirpc/rpc/pmap_clnt.h /usr/include/rpc
+   28  sudo ln -s /usr/include/tirpc/rpc/pmap_prot.h /usr/include/rpc
+   29  sudo ln -s /usr/include/tirpc/rpc/rpcb_clnt.h /usr/include/rpc
+   30  sudo ln -s /usr/include/tirpc/rpc/rpcb_prot.h /usr/include/rpc
+   31  sudo ln -s /usr/include/tirpc/rpc/svc_mt.h /usr/include/rpc
+   32  sudo ln -s /usr/include/tirpc/rpc/rpcent.h /usr/include/rpc
+   33  sudo wget https://www.snort.org/downloads/snort/snort-2.9.20.tar.gz
+   34  sudo tar -zxf snort-2.9.20.tar.gz
+   35  cd snort-2.9.20/
+   36  sudo ./configure
+   37  sudo make
+   38  sudo make install
+   39  sudo snort -V
+   40  sudo ldconfig
+   41  cd ~
+   42  sudo ln -s /usr/local/bin/snort /usr/sbin/snort
+   43  sudo groupadd snort
+   44  sudo useradd snort -r -s /usr/sbin/nologin -c SNORT_IDS -g snort
+   45  sudo mkdir -p /etc/snort/rules
+   46  sudo mkdir -p /var/log/snort
+   47  sudo mkdir /usr/local/lib/snort_dynamicrules
+   48  sudo cp /usr/src/snort_src/snort-2.9.20/etc/*.conf* /etc/snort/
+   49  sudo cp /usr/src/snort_src/snort-2.9.20/etc/*.map /etc/snort/
+   50  sudo touch /etc/snort/rules/white_list.rules
+   51  sudo touch /etc/snort/rules/black_list.rules
+   52  sudo touch /etc/snort/rules/local.rules
+   53  sudo chmod -R 5775 /etc/snort/
+   54  sudo chmod -R 5775 /var/log/snort/
+   55  sudo chmod -R 5775 /usr/local/lib/snort_dynamicrules/
+   56  sudo chown -R snort:snort /etc/snort/
+   57  sudo chown -R snort:snort /var/log/snort/
+   58  sudo chown -R snort:snort /usr/local/lib/snort_dynamicrules/
+   59  sudo nano /etc/snort/snort.conf
+   60  sudo snort -T -c /etc/snort/snort.conf
+   61  sudo nano /etc/snort/rules/local.rules
+   62  sudo snort -u snort -g snort -c /etc/snort/snort.conf -A console
+   63  history
+
+
+
+
+
+sudo ln -s /usr/include/tirpc/rpc/rpc.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/types.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/netconfig.h /usr/include/
+sudo ln -s /usr/include/tirpc/rpc/xdr.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/auth.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/clnt_stat.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/clnt.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/clnt_soc.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/rpc_msg.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/auth_unix.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/auth_des.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/svc_auth.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/svc.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/svc_soc.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/pmap_clnt.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/pmap_prot.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/rpcb_clnt.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/rpcb_prot.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/svc_mt.h /usr/include/rpc
+sudo ln -s /usr/include/tirpc/rpc/rpcent.h /usr/include/rpc
+
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DITISS Project</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input[type=text], input[type=password] {
+            width: 300px;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .welcome {
+            margin-top: 30px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>DITISS Project</h1>
+
+        <form id="loginForm">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Login">
+        </form>
+
+        <div id="message" class="error"></div>
+
+        <div id="welcomeMessage" class="welcome"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const validUsers = ['Rahul', 'Saloni', 'Tejaswar', 'Jayesh'];
+            const validPassword = 'Ditiss';
+
+            if (validUsers.includes(username) && password === validPassword) {
+                document.getElementById('message').innerText = '';
+                document.getElementById('welcomeMessage').innerText = 'Welcome to DITISS Project';
+            } else {
+                document.getElementById('message').innerText = 'Incorrect username or password';
+                document.getElementById('welcomeMessage').innerText = '';
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage ('SCM Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/84192/project01'
+                sh 'ls -l'
+        
+            }
+        }
+    }
+}
